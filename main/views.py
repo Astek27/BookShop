@@ -22,4 +22,6 @@ def book_list(request, category_slug=None, author_slug=None):
                            'books': books})
 
 def book_detail(request, book_slug=None):
-    pass
+    categories = Category.objects.all()
+    book = get_object_or_404(Book, slug=book_slug)
+    return render(request, 'main/book/detail.html', context={'categories': categories, 'book': book})

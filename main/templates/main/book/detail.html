@@ -1,0 +1,9 @@
+{% extends "main/base.html" %}
+{% block title %}{{ book.name }}{% endblock title %}
+{% block content %}
+    <img src="{{ book.image.url }}" class="card-img-top" alt="{{ book.name }}">
+    <h1>{{ book.name }}</h1>
+    <p>Автор: <a href="{{ book.author.get_absolute_url }}" class="text-decoration-none">{{ book.author.name }}</a></p>
+    <p>Цена: {{ book.price }} руб.</p>
+    <p>{{ book.description }}</p>
+{% endblock content %}
