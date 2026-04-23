@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Author(models.Model):
@@ -12,6 +13,9 @@ class Author(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("main:book_list_by_author", args=[self.slug])
     
 
 class Category(models.Model):
@@ -25,7 +29,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
+    
+    def get_absolute_url(self):
+        return reverse("main:book_list_by_category", args=[self.slug])
+    
 
 class Book(models.Model):
     name = models.CharField(max_length=100, db_index=True)
@@ -46,4 +53,8 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("main:model_detail", kwargs={"pk": self.pk})
+    
     
